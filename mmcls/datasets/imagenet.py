@@ -1076,6 +1076,8 @@ class ImageNet(BaseDataset):
     def load_annotations(self):
         if self.ann_file is None:
             folder_to_idx = find_folders(self.data_prefix)
+
+            print(folder_to_idx)
             samples = get_samples(
                 self.data_prefix,
                 folder_to_idx,
