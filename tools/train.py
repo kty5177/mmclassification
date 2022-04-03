@@ -16,6 +16,10 @@ from mmcls.apis import init_random_seed, set_random_seed, train_model
 from mmcls.datasets import build_dataset
 from mmcls.models import build_classifier
 from mmcls.utils import collect_env, get_root_logger, setup_multi_processes
+import mlflow
+mlflow.set_tracking_uri("http://localhost:5003")
+mlflow.set_experiment('test-mmcls2')
+# mlflow.autolog()
 
 
 def parse_args():
@@ -156,7 +160,17 @@ def main():
     meta['seed'] = seed
 
     model = build_classifier(cfg.model)
+
+    print(type(model))
+    print(model)
+
     model.init_weights()
+
+    mlflow.log_param('seed', seed)
+    mlflow.log_param('work_dir', cfg.work_dir)
+    mlflow.log_param('config_path', args.config)
+
+
 
     datasets = [build_dataset(cfg.data.train)]
     if len(cfg.workflow) == 2:

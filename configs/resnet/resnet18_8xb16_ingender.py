@@ -1,4 +1,4 @@
 _base_ = [
     '../_base_/models/resnet18.py', '../_base_/datasets/imagenet_gender_ty.py',
-    '../_base_/schedules/imagenet_bs256.py', '../_base_/default_runtime.py'
+    '../_base_/schedules/imagenet_bs256.py', '../_base_/mlflow_runtime.py'
 ]
